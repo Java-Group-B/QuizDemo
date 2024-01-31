@@ -1,5 +1,5 @@
 package com.quiz;
 
 public interface AddQuestion {
-public void getAddQuestion();
+public void getAddQuestion() throws Exception;
 }
