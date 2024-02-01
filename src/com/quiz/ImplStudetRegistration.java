@@ -3,10 +3,7 @@ package com.quiz;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-
-
 public class ImplStudetRegistration implements StudentRegistration{
-
 
 	@Override
 	public void getStudentRegistration() throws Exception {
@@ -16,7 +13,7 @@ public class ImplStudetRegistration implements StudentRegistration{
 		try {
 			ConnectionDetails connectionDetails=new ConnectionDetails();
 			connection=connectionDetails.getConnection();
-			preparedStatement = connection.prepareStatement("insert into students(firstname,lastname,username,password,city,mail_id,mobile_no) values (?,?,?,?,?,?,?)");
+			preparedStatement = connection.prepareStatement("insert into students_registration(firstname,lastname,username,password,city,mail_id,mobile_no) values (?,?,?,?,?,?,?)");
 			System.out.println("Enter First Name -");
 			preparedStatement.setString(1, QuizDemo.scanner.next());
 			System.out.println("Enter Last Name -");
@@ -27,7 +24,7 @@ public class ImplStudetRegistration implements StudentRegistration{
 			preparedStatement.setString(4, QuizDemo.scanner.next());
 			System.out.println("Enter City -");
 			preparedStatement.setString(5, QuizDemo.scanner.next());
-			System.out.println("Enter Mail-id -");
+			System.out.println("Enter e-mail-id -");
 			preparedStatement.setString(6, QuizDemo.scanner.next());
 			System.out.println("Enter Mobile-Number -");
 			preparedStatement.setString(7, QuizDemo.scanner.next());

@@ -1,5 +1,7 @@
 package com.quiz;
 
+import java.sql.SQLException;
+
 public interface DisplayQuestionsList {
-public void getDisplayQuestionsList();
+public int getDisplayQuestionsList() throws SQLException;
 }

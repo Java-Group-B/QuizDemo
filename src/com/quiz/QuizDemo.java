@@ -53,9 +53,7 @@ static Scanner scanner=null;
 		addQuestion.getAddQuestion();
 		break;
 	default:
-		System.out.println("Invalid Choice.");
-	
-		
+		System.out.println("Invalid Choice.");		
 	}
 	scanner.close();
 	}
