@@ -8,12 +8,10 @@ import java.util.Scanner;
 public class ImplDisplayQuestionsList implements DisplayQuestionsList {
 	// connection objects
 	Connection connection = null;
-	PreparedStatement ps = null;
 	PreparedStatement ps1=null;
 	
 	// variables defined in program to count
 	int countOfCorrectQuestions=0;
-	int countOfTotalNoQuestions=0;
 	
 	@Override
 	public void getDisplayQuestionsList() throws SQLException {
@@ -27,7 +25,11 @@ public class ImplDisplayQuestionsList implements DisplayQuestionsList {
 		if(userDataVerify==true) {
 			setQuizInitialization(username);
 		}else {
+			try {
 			throw new IncorrectUsernameOrPasswordException("Incorrect username or password...plz try again...or register again!!!");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -37,10 +39,10 @@ public void setQuizInitialization(String username) throws SQLException {
 		// calling of connectionDetails method to establish connection
 		ConnectionDetails connectionDetails = new ConnectionDetails();
 		connection = connectionDetails.getConnection();
-		// selection of question one by one
+		// selection of 10 question random
 		ps1 = connection.prepareStatement("select * from question_bank where id =?");
 		// to select question at particular id
-		for(int i=1;i<=countOfTotalNoQuestions;i++) {
+		for(int i=1;i<=10;i++) {
 		  ps1.setInt(1, i); 
 		  ResultSet rs1=ps1.executeQuery();	   // execution of query		
 			while(rs1.next()) {
@@ -80,12 +82,12 @@ public void setQuizInitialization(String username) throws SQLException {
 		}
 	}
 	
-//	System.out.println("\n"+"Total correct questions: "+countOfCorrectQuestions+"/"+countOfTotalNoQuestions);
+	//System.out.println("\n"+"Total correct questions: "+countOfCorrectQuestions+"/"+countOfTotalNoQuestions);
 	int obtainedMarksOfStudent=5*countOfCorrectQuestions;
 	int totalMarksOfQuiz=10*5;
 	// create object of ImplStoreResult class
 	ImplStoreResult implStoreResult = new ImplStoreResult();
-	implStoreResult.setStudentMarksInDB(username,obtainedMarksOfStudent,totalMarksOfQuiz);
+	implStoreResult.setStudentMarksInDB(username,obtainedMarksOfStudent,totalMarksOfQuiz,countOfCorrectQuestions);
 	
 	System.out.println("Thank you for this Quiz....!! ");	 
 }catch (Exception e) {
@@ -93,7 +95,6 @@ public void setQuizInitialization(String username) throws SQLException {
 	}
 	finally {
 	  connection.close();
-	  ps.close();
 	  ps1.close();
 	}
 }

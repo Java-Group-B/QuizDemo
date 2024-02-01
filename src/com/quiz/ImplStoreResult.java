@@ -14,14 +14,14 @@ public class ImplStoreResult implements StoreResult {
 		throw new AccessDeniedForResultException("Sorry! cannot store result directly...."+"\n"+"please attempt the quiz first....");
 	}
 
-	public void setStudentMarksInDB(String username,int obtainedMarksOfStudent,int totalMarksOfQuiz) throws SQLException {
+	public void setStudentMarksInDB(String username,int obtainedMarksOfStudent,int totalMarksOfQuiz,int countOfCorrectQuestions) throws SQLException {
 		try {
 		// calling of connectionDetails method to establish connection
 		ConnectionDetails connectionDetails = new ConnectionDetails();
 		connection=connectionDetails.getConnection();
 		String obtainedMarks=obtainedMarksOfStudent+"/"+totalMarksOfQuiz;
 		// System.out.println("\n"+"Total marks of student: "+total_marks);
-		ps=connection.prepareStatement("insert into student_marks(username,obtained_marks) value (?,?)");
+		ps=connection.prepareStatement("insert into students_marks(username,obtained_marks) value (?,?)");
 		
 		ps.setString(1, username);
 		ps.setString(2, obtainedMarks);

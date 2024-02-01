@@ -18,13 +18,18 @@ public class VerificationOfUserLogin {
 			ConnectionDetails connectionDetails = new ConnectionDetails();
 			connection = connectionDetails.getConnection();
 			// selection of username and password from student_registration table
-			ps2=connection.prepareStatement("select * from student_registration where username=?, password=?");
+			ps2=connection.prepareStatement("select username,password from students_registration");
+//			ps2.setString(1,username);
+//			ps2.setString(2, password);
 			ResultSet rs2=ps2.executeQuery();
 			
 			// Store username and related password in map in key and value format
 			Map<String,String> studentLoginData=new LinkedHashMap<String, String>();
 			while(rs2.next()) {
-				studentLoginData.put(rs2.getString(3),rs2.getString(4));
+				String username1=rs2.getString(1);
+				String password2=rs2.getString(2);
+//				System.out.println(username1);
+				studentLoginData.put(rs2.getString(1),rs2.getString(2));
 			}
 			// now compare student username and password in database with user input
 			for(Map.Entry<String,String> studentData:studentLoginData.entrySet()) {
