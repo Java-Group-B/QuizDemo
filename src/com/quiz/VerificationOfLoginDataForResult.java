@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class VerificationOfUserLoginData {
+public class VerificationOfLoginDataForResult {
 
 	public static boolean getUserVarification(String uname,String pword) throws SQLException {
 		/*set one flag, if user credentials are matched then it
@@ -22,7 +22,7 @@ public class VerificationOfUserLoginData {
 			ConnectionDetails connectionDetails=new ConnectionDetails();
 			connection=connectionDetails.getConnection();
 			/*pass sql query through preparedStatement, to fetch username & password from database*/
-			preparedStatement = connection.prepareStatement("select student.username,student.password from student inner join scoredetails on student.username=scoredetails.username;");
+			preparedStatement = connection.prepareStatement("select student_registration.username,student_registration.password from student_registration inner join students_marks on student_registration.username=student_marks.username;");
 			ResultSet resultSet=preparedStatement.executeQuery();
 			/*Store username and corresponding password in map in form of key,value*/
 			Map<String,String> credentials=new LinkedHashMap<String, String>();

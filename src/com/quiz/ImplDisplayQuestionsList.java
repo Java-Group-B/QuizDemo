@@ -3,57 +3,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ImplDisplayQuestionsList implements DisplayQuestionsList {
+	// connection objects
 	Connection connection = null;
 	PreparedStatement ps = null;
 	PreparedStatement ps1=null;
+	
+	// variables defined in program to count
 	int countOfCorrectQuestions=0;
 	int countOfTotalNoQuestions=0;
-	int totalMarksOfStudent=0;
-
-	public void getUserLogin() throws SQLException {
-		// take input from user i.e username and password
+	
+	@Override
+	public void getDisplayQuestionsList() throws SQLException {
 		System.out.println("Enter the username :");
 		String username=QuizDemo.scanner.next();
 		System.out.println("Enter the password :");
 		String password=QuizDemo.scanner.next();
-		// call upon the getUserVarification() method and verify username and password
-		boolean verificationOfData=VerificationOfUserLoginData.getUserVarification(username,password);
-		//if credentials are correct, then call getResult to display result 
-		try{
-		if(verificationOfData==true) {
-		totalMarksOfStudent=getDisplayQuestionsList();
-			// calling of connectionDetails method to establish connection
-			ConnectionDetails connectionDetails = new ConnectionDetails();
-			connection = connectionDetails.getConnection();
-			// selection of all no of questions from question_table
-			ps=connection.prepareStatement("insert into student_marks(username,user_password,user_marks) value (?,?,?)");
+		
+		VerificationOfUserLogin verificationOfUserLogin=new VerificationOfUserLogin();
+		boolean userDataVerify=verificationOfUserLogin.getUserLoginVerification(username,password);
+		if(userDataVerify==true) {
+			setQuizInitialization(username);
+		}else {
+			throw new IncorrectUsernameOrPasswordException("Incorrect username or password...plz try again...or register again!!!");
 		}
-		}catch(Exception e) {
-			e.printStackTrace();
 	}
-		}
-
-@Override
-public int getDisplayQuestionsList() throws SQLException {
-		getUserLogin();
+	
+public void setQuizInitialization(String username) throws SQLException {
+		
 	try{
 		// calling of connectionDetails method to establish connection
 		ConnectionDetails connectionDetails = new ConnectionDetails();
 		connection = connectionDetails.getConnection();
-		// selection of all no of questions from question_table
-		ps=connection.prepareStatement("select * from question_bank");
-		ResultSet rs=ps.executeQuery();  // execution of query
-		// check if question is present in database and return true if it is present or return false
-		while(rs.next()) {
-			// To count no of questions present in database group_b_db in question_table
-			countOfTotalNoQuestions++;
-		}
-		// System.out.println(countOfTotalNoQuestions);
 		// selection of question one by one
 		ps1 = connection.prepareStatement("select * from question_bank where id =?");
 		// to select question at particular id
@@ -82,6 +65,7 @@ public int getDisplayQuestionsList() throws SQLException {
 				if(userAnswer2.equals(correct_answer)) {
 				 countOfCorrectQuestions++;
 				}
+				
 				break;
 				}else {
 				 j++;
@@ -95,10 +79,14 @@ public int getDisplayQuestionsList() throws SQLException {
 			}
 		}
 	}
-		
+	
 //	System.out.println("\n"+"Total correct questions: "+countOfCorrectQuestions+"/"+countOfTotalNoQuestions);
-	totalMarksOfStudent=5*countOfCorrectQuestions;
-	System.out.println("Total marks of student: "+totalMarksOfStudent+" out of "+countOfTotalNoQuestions*5);
+	int obtainedMarksOfStudent=5*countOfCorrectQuestions;
+	int totalMarksOfQuiz=10*5;
+	// create object of ImplStoreResult class
+	ImplStoreResult implStoreResult = new ImplStoreResult();
+	implStoreResult.setStudentMarksInDB(username,obtainedMarksOfStudent,totalMarksOfQuiz);
+	
 	System.out.println("Thank you for this Quiz....!! ");	 
 }catch (Exception e) {
 	  e.printStackTrace();
@@ -108,7 +96,6 @@ public int getDisplayQuestionsList() throws SQLException {
 	  ps.close();
 	  ps1.close();
 	}
-	return totalMarksOfStudent;
 }
-}	
+}
 
