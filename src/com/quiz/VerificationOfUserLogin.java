@@ -23,11 +23,9 @@ public class VerificationOfUserLogin {
 			
 			// Store username and related password in map in key and value format
 			Map<String,String> studentLoginData=new LinkedHashMap<String, String>();
-			
 			while(rs2.next()) {
 				studentLoginData.put(rs2.getString(3),rs2.getString(4));
 			}
-			
 			// now compare student username and password in database with user input
 			for(Map.Entry<String,String> studentData:studentLoginData.entrySet()) {
 				if(studentData.getKey().equals(username)&&studentData.getValue().equals(password)){
