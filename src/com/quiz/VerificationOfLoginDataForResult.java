@@ -40,7 +40,7 @@ public class VerificationOfLoginDataForResult {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("You may not attempted exam.");
+			System.out.println("You have not attempted exam.");
 		}
 		finally {
 			connection.clearWarnings();

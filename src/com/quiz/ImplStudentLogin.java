@@ -1,13 +1,10 @@
 package com.quiz;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class ImplStudentLogin implements StudentLogin {
 
@@ -43,7 +40,7 @@ public class ImplStudentLogin implements StudentLogin {
 			else {
 				throw new Exception();
 			}
-			System.out.println("Do you want to attempt Quiz or Do you want to check result? (Press \"y\" for yes): ");
+			System.out.println("Do you want to attempt Quiz or Do you want to check result?\n(Press \"y\" for yes, press any other key to exit.): ");
 			String ans = QuizDemo.scanner.next();
 			// we have to add 3 and 5 number step here
 			if(ans.equalsIgnoreCase("y")) {
