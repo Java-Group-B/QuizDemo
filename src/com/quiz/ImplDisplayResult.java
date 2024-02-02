@@ -16,13 +16,17 @@ public class ImplDisplayResult implements DisplayResult{
 		String uname=QuizDemo.scanner.next();
 		System.out.println("Enter the password :");
 		String pword=QuizDemo.scanner.next();
+		boolean verifyUser=VerificationOfUserLogin.getUserLoginVerification(uname, pword);
 		/*call getUserVarification method and verify user*/
+				if(verifyUser==true) {
+					
+				
 		boolean varify=VerificationOfLoginDataForResult.getUserVarification(uname,pword);
 		//if credentials are correct, then call getResult to display result 
 		if(varify==true) {
 			getResult(uname,pword);	
 		}
-	}
+				}}
 	
 	public static void getResult(String uname,String pword) throws Exception {
 		Connection connection=null;
@@ -31,12 +35,12 @@ public class ImplDisplayResult implements DisplayResult{
 			ConnectionDetails connectionDetails=new ConnectionDetails();
 			connection=connectionDetails.getConnection();
 			/*Pass the sql query via preparedstatement and fetch score of student*/
-			preparedStatement = connection.prepareStatement("select student.username,student.password,scoredetails.score from student inner join scoredetails on student.username=scoredetails.username where scoredetails.username=?;");
+			preparedStatement = connection.prepareStatement("select student_result.score from student_data inner join student_result on student_data.username=student_result.username where student_result.username=?;");
 			preparedStatement.setString(1,uname);
 			ResultSet resultSet=preparedStatement.executeQuery();
 
 			while(resultSet.next()) {
-				System.out.print("Your score is "+resultSet.getInt(3));
+				System.out.print("Your score is "+resultSet.getInt(1));
 			}
 		}
 		catch (Exception e) {
@@ -45,6 +49,7 @@ public class ImplDisplayResult implements DisplayResult{
             System.out.println("Unexpected Error...");
 		}
 		finally {
+			
 			connection.close();
 			preparedStatement.close();
 		}

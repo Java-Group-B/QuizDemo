@@ -22,7 +22,7 @@ public class VerificationOfLoginDataForResult {
 			ConnectionDetails connectionDetails=new ConnectionDetails();
 			connection=connectionDetails.getConnection();
 			/*pass sql query through preparedStatement, to fetch username & password from database*/
-			preparedStatement = connection.prepareStatement("select student_registration.username,student_registration.password from student_registration inner join students_marks on student_registration.username=student_marks.username;");
+			preparedStatement = connection.prepareStatement("select student_result.username,student_data.password from student_data inner join student_result on student_data.username=student_result.username;");
 			ResultSet resultSet=preparedStatement.executeQuery();
 			/*Store username and corresponding password in map in form of key,value*/
 			Map<String,String> credentials=new LinkedHashMap<String, String>();
@@ -40,9 +40,10 @@ public class VerificationOfLoginDataForResult {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Username Or Password is incorrect\nOr You may not attempted exam.");
+			System.out.println("You may not attempted exam.");
 		}
 		finally {
+			connection.clearWarnings();
 			connection.close();
 			preparedStatement.close();
 		}	

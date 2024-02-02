@@ -29,19 +29,19 @@ public class ImplAddQuestion implements AddQuestion{
 			System.out.println("Enter the Question :");
 			QuizDemo.scanner.nextLine();
 			preparedStatement = connection.prepareStatement("insert into question_bank(question,option_a,option_b,option_c,option_d,correct_answer)values (?,?,?,?,?,?)");
-		String question=QuizDemo.scanner.nextLine();
+			String question=QuizDemo.scanner.nextLine();
 			preparedStatement.setString(1, question);
 			System.out.println("Enter option - a :");
-			String option_a="a) "+QuizDemo.scanner.nextLine();
+			String option_a=QuizDemo.scanner.nextLine();
 			preparedStatement.setString(2, option_a);
 			System.out.println("Enter option - b :");
-			String option_b="b) "+QuizDemo.scanner.nextLine();
+			String option_b=QuizDemo.scanner.nextLine();
 			preparedStatement.setString(3, option_b);
 			System.out.println("Enter option - c :");
-			String option_c="c) "+QuizDemo.scanner.nextLine();
+			String option_c=QuizDemo.scanner.nextLine();
 			preparedStatement.setString(4, option_c);
 			System.out.println("Enter option - d :");
-			String option_d="d) "+QuizDemo.scanner.nextLine();
+			String option_d=QuizDemo.scanner.nextLine();
 			preparedStatement.setString(5, option_d);
 			System.out.println("Enter correct answer :");
 			String correct_answer=QuizDemo.scanner.nextLine();
@@ -50,8 +50,8 @@ public class ImplAddQuestion implements AddQuestion{
 			System.out.println("Question added to Question Bank Successfully...");
 		}
 		catch (Exception e) {
-		System.out.println("Unexpected Error...");
-		System.out.println(e.getMessage());
+			System.out.println("Unexpected Error...");
+			System.out.println(e.getMessage());
 		}
 		finally {
 			connection.close();
