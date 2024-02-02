@@ -29,7 +29,7 @@ public class VerificationOfUserLogin {
 				String username1=rs2.getString(1);
 				String password2=rs2.getString(2);
 //				System.out.println(username1);
-				studentLoginData.put(rs2.getString(1),rs2.getString(2));
+				studentLoginData.put(username1,password2);
 			}
 			// now compare student username and password in database with user input
 			for(Map.Entry<String,String> studentData:studentLoginData.entrySet()) {
