@@ -1,5 +1,5 @@
 package com.quiz;
 
 public interface StudentLogin {
-	public void getStudentLogin();
+	public void getStudentLogin() throws Exception;
 }

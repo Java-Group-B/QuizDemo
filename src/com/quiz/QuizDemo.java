@@ -55,6 +55,7 @@ static Scanner scanner=null;
 	default:
 		System.out.println("Invalid Choice.");		
 	}
+	
 	scanner.close();
 	}
 	

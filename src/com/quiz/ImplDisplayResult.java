@@ -40,7 +40,7 @@ public class ImplDisplayResult implements DisplayResult{
 			ResultSet resultSet=preparedStatement.executeQuery();
 
 			while(resultSet.next()) {
-				System.out.print("Your score is "+resultSet.getInt(1));
+				System.out.println("Your score is "+resultSet.getInt(1));
 			}
 		}
 		catch (Exception e) {
