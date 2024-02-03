@@ -22,8 +22,18 @@ public class ImplDisplayResult implements DisplayResult{
 		if(varify==true) {
 			getResult(uname,pword);	
 		}
-				}}
-	
+//		try {
+		else{
+			try {
+				/*throw exception if credentials not match*/
+				throw new QuizNotAttemptedException("You have not attempted Quiz.");
+			}
+			catch(QuizNotAttemptedException q) {
+				System.out.println(q.getMessage());
+			}
+				}
+		}
+	}
 	public static void getResult(String uname,String pword) throws Exception {
 		Connection connection=null;
 		PreparedStatement preparedStatement =null;
@@ -36,7 +46,7 @@ public class ImplDisplayResult implements DisplayResult{
 			ResultSet resultSet=preparedStatement.executeQuery();
 
 			while(resultSet.next()) {
-				System.out.println("Your score is "+resultSet.getInt(1));
+				System.out.println("Your score is "+resultSet.getString(1));
 			}
 		}
 		catch (Exception e) {

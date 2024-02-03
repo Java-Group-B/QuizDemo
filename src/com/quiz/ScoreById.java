@@ -1,5 +1,5 @@
 package com.quiz;
 
 public interface ScoreById {
-public void getScoreById();
+public void getScoreById() throws Exception;
 }

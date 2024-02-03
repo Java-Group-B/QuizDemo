@@ -16,7 +16,7 @@ public class ImplStudentLogin implements StudentLogin {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
-			System.out.println("Enter User Name : ");
+			System.out.println("Enter Username : ");
 			String uname = QuizDemo.scanner.next();
 			System.out.println("Enter Password : ");
 			String pwd = QuizDemo.scanner.next();
@@ -27,7 +27,7 @@ public class ImplStudentLogin implements StudentLogin {
 			boolean i =false;
 			Map<String,String> loginData = new LinkedHashMap<String, String>(); //to store username & password 
 			while(resultSet.next()) {
-				loginData.put(resultSet.getString(1),resultSet.getString(2)); // putting data into key value pair 
+				loginData.put(resultSet.getString("username"),resultSet.getString("password")); // putting data into key value pair 
 			}
 			for(Map.Entry<String,String> map : loginData.entrySet()) {
 				if(map.getKey().equals(uname) && map.getValue().equals(pwd)) {
@@ -49,15 +49,17 @@ public class ImplStudentLogin implements StudentLogin {
 				
 					System.out.println("Enter your choice: ");
 					String option = QuizDemo.scanner.next();
-				
+
+				do {	
 				if(!(option.equals("1")||option.equals("2"))) {
-					System.out.println("Invalid choice.Please Enter valid choice :");
-					 option = QuizDemo.scanner.next();
+					System.out.println("Invalid choice....\n\nEnter your correct choice :");
+					 option = QuizDemo.scanner.next();	 
 				}
+				}while(!(option.equals("1")||option.equals("2")));
 				//int option = QuizDemo.scanner.nextInt();
 				if(option.equals("1")) {
-					//ImplDisplayQuestionsList questions = new ImplDisplayQuestionsList();
-					//questions.setQuizInitialization(uname);
+					ImplDisplayQuestionsList questions = new ImplDisplayQuestionsList();
+					questions.setQuizInitialization(uname);
 				}
 				else if(option.equals("2")) {
 					boolean verifyUser=VerificationOfUserLogin.getUserLoginVerification(uname, pwd);

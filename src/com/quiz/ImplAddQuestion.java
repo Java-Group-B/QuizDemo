@@ -60,7 +60,13 @@ public class ImplAddQuestion implements AddQuestion{
 			preparedStatement.setString(5, option_d);
 			System.out.println("Enter correct answer :");
 			String correct_answer=QuizDemo.scanner.nextLine();
-			preparedStatement.setString(6, correct_answer);
+			do {	
+				if(!(correct_answer.equalsIgnoreCase("a")||correct_answer.equalsIgnoreCase("b") ||correct_answer.equalsIgnoreCase("c") || correct_answer.equalsIgnoreCase("d"))) {
+					System.out.println("Invalid answer (valid answer should be - a/b/c/d)....\n\n Please Enter correct answer :");
+					correct_answer = QuizDemo.scanner.next();	 
+				}
+			}while(!(correct_answer.equalsIgnoreCase("a")||correct_answer.equalsIgnoreCase("b") ||correct_answer.equalsIgnoreCase("c") || correct_answer.equalsIgnoreCase("d")));
+			preparedStatement.setString(6, correct_answer.toLowerCase());
 			preparedStatement.executeUpdate();
 			System.out.println("Question added to Question Bank Successfully...");
 		}
