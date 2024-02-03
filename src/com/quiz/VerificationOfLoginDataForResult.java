@@ -34,13 +34,18 @@ public class VerificationOfLoginDataForResult {
 				if(m.getKey().equals(uname)&&m.getValue().equals(pword)){
 					i=true;
 				}}
+			try {
 			if(i==false) {
 				/*throw exception if credentials not match*/
-				throw new Exception();
+				throw new QuizNotAttempted("You have not attempted Quiz.");
+			}}
+			catch(QuizNotAttempted q) {
+				System.out.println(q.getMessage());
 			}
 		}
 		catch (Exception e) {
-			System.out.println("You have not attempted exam.");
+			System.out.println("Unexpected Error...");
+			System.out.println(e.getMessage());
 		}
 		finally {
 			connection.clearWarnings();

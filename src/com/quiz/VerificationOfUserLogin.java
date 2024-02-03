@@ -42,11 +42,17 @@ public class VerificationOfUserLogin {
 				}
 
 			}
+			try {
 			if(valueOfVerify==false) {
-				throw new Exception();
+				throw new IncorrectUsernameOrPasswordException("Username or Password is incorrect.");
+			}
+			}
+			catch (IncorrectUsernameOrPasswordException in) {
+				System.out.println(in.getMessage());
 			}
 		}catch(Exception e) {
-			System.out.println("Username or Password is incorrect.");
+			System.out.println("Unexpected Error...");
+			System.out.println(e.getMessage());
 		}finally {
 			connection.close();
 			ps2.close();

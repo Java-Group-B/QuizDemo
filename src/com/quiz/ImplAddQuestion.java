@@ -11,14 +11,29 @@ public class ImplAddQuestion implements AddQuestion{
 		String uname=QuizDemo.scanner.next();
 		System.out.println("Enter the password :");
 		String pword=QuizDemo.scanner.next();
+		
 		/*call getUserVarification method and verify user*/
+		
+		
 		AdminCredentials adminCredentials=new AdminCredentials();
 		boolean varify=adminCredentials.getAdminVerification(uname, pword);
 		//if credentials are correct, then call addNewQuestion method
 		if(varify==true) {
 			addNewQuestion();	
 		}
+		else {
+			boolean isNotStudent=VerificationOfUserLogin.getUserLoginVerification(uname, pword);
+			
+			try{
+				if(isNotStudent==true) {
+			
+				throw new AccessDeniedForResultException("Access Denied for students...");
+		}}
+			catch (AccessDeniedForResultException e) {
+				System.out.println(e.getMessage());
+			}
 	}
+		}
 	private static void addNewQuestion() throws Exception {
 
 		Connection connection=null;

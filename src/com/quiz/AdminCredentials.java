@@ -33,13 +33,11 @@ public boolean getAdminVerification(String uname,String pword) throws Exception 
 			if(m.getKey().equals(uname)&&m.getValue().equals(pword)){
 				flag=true;
 			}}
-		if(flag==false) {
-			/*throw exception if credentials not match*/
-			throw new Exception();
-		}
+		
 	}
 	catch (Exception e) {
-		System.out.println("Access denied...");
+		System.out.println("Unexpected Error...");
+		System.out.println(e.getMessage());
 	}
 	finally {
 		connection.close();
