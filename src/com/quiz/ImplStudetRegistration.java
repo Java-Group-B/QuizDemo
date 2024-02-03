@@ -13,15 +13,15 @@ public class ImplStudetRegistration implements StudentRegistration{
 		try {
 			ConnectionDetails connectionDetails=new ConnectionDetails();
 			connection=connectionDetails.getConnection();
-			preparedStatement = connection.prepareStatement("insert into students_registration(firstname,lastname,username,password,city,mail_id,mobile_no) values (?,?,?,?,?,?,?)");
+			preparedStatement = connection.prepareStatement("insert into student_data(firstname,lastname,username,password,city,emailid,mobilenumber) values (?,?,?,?,?,?,?)");
 			System.out.println("Enter First Name -");
 			preparedStatement.setString(1, QuizDemo.scanner.next());
 			System.out.println("Enter Last Name -");
 			preparedStatement.setString(2, QuizDemo.scanner.next());
 			System.out.println("Enter Username -");
-			String name=QuizDemo.scanner.next();
-			Example ex=new Example();
-			ex.method(name);
+		//	String name=QuizDemo.scanner.next();
+			//Example ex=new Example();
+			//ex.method(name);
 			preparedStatement.setString(3, QuizDemo.scanner.next());
 			System.out.println("Enter Password -");
 			preparedStatement.setString(4, QuizDemo.scanner.next());
@@ -33,7 +33,14 @@ public class ImplStudetRegistration implements StudentRegistration{
 			preparedStatement.setString(7, QuizDemo.scanner.next());
 			int i=preparedStatement.executeUpdate();
 			if(i==1) {
-				System.out.println("Registeration done successfully...");	
+				System.out.println("Registeration done successfully...");
+				System.out.println("\nDo you want to Login Now?(Press \"y\" for yes,and press any other key to exit.");
+				String user_choice=QuizDemo.scanner.next();
+				if(user_choice.equalsIgnoreCase("y")) {
+				StudentLogin studentLogin=new ImplStudentLogin();
+				studentLogin.getStudentLogin();
+				}
+				
 			}
 			else {
 				System.out.println("Invalid Data");
@@ -43,7 +50,7 @@ public class ImplStudetRegistration implements StudentRegistration{
 		catch (Exception e) {
 
 			System.out.println(e.getMessage());
-			System.out.println("\nDuplicate values for Username,Mail-id,Mobile-Number are not allowed.");
+			System.out.println("\n Username or Mail-id or Mobile-Number already exist.");
 		}
 		finally {
 			connection.close();

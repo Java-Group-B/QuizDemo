@@ -40,7 +40,7 @@ public class ImplStudentLogin implements StudentLogin {
 			else {
 				throw new Exception();
 			}
-			System.out.println("Do you want to attempt Quiz or Do you want to check result?\n(Press \"y\" for yes, press any other key to exit.): ");
+			System.out.println("\nDo you want to attempt Quiz or Do you want to check result?\n(Press \"y\" key for yes, press any other key to exit.): ");
 			String ans = QuizDemo.scanner.next();
 			// we have to add 3 and 5 number step here
 			if(ans.equalsIgnoreCase("y")) {
@@ -48,18 +48,18 @@ public class ImplStudentLogin implements StudentLogin {
 			//	System.out.println("Enter your choice: ");
 				
 					System.out.println("Enter your choice: ");
-					int option = QuizDemo.scanner.nextInt();
+					String option = QuizDemo.scanner.next();
 				
-				while(!(option==1||option==2)) {
+				if(!(option.equals("1")||option.equals("2"))) {
 					System.out.println("Invalid choice.Please Enter valid choice :");
-					 option = QuizDemo.scanner.nextInt();
+					 option = QuizDemo.scanner.next();
 				}
 				//int option = QuizDemo.scanner.nextInt();
-				if(option==1) {
-					ImplDisplayQuestionsList questions = new ImplDisplayQuestionsList();
-					questions.setQuizInitialization(uname);
+				if(option.equals("1")) {
+					//ImplDisplayQuestionsList questions = new ImplDisplayQuestionsList();
+					//questions.setQuizInitialization(uname);
 				}
-				else if(option==2) {
+				else if(option.equals("2")) {
 					boolean verifyUser=VerificationOfUserLogin.getUserLoginVerification(uname, pwd);
 					if(verifyUser==true) {
               		boolean varify=VerificationOfLoginDataForResult.getUserVarification(uname,pwd);
