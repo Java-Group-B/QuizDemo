@@ -52,10 +52,7 @@ public static void displayresulbyasc() throws Exception {
 		// step-2
 		 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/group_b_db", "root","root");// Q
 		// step-3-*/
-		 ps = con.prepareStatement("select student_data.firstname,student_data.lastname,student_result.score\r\n" + 
-				"from student_data\r\n" + 
-				"inner join student_result\r\n" + 
-				"on student_data.username = student_result.username ORDER BY score ASC;");
+		 ps = con.prepareStatement("select student_data.firstname,student_data.lastname,student_result.score from student_data inner join student_result on student_data.username= student_result.username ORDER BY student_result.score ASC;");
 
 		// step-4-
 		ResultSet rs = ps.executeQuery();
