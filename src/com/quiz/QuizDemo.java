@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class QuizDemo {
 static Scanner scanner=null;
 	public static void main(String[] args) throws Exception {
+		getQuiz();
+	}
+	
+	public static void getQuiz() throws Exception{
 		System.out.println("Welcome to Quiz based application"
 				+ "\nUser Operation:"
 				+ "\n1. Student Registration"
@@ -16,9 +20,25 @@ static Scanner scanner=null;
 				+ "\n6. Display all students score as per ascending order"
 				+ "\n7. Fetch student score by using id"
 				+ "\n8. Add question with 4 options into database\n");
-	System.out.println("Enter your choice : ");
+	
+	
+	int choice=0;
+	boolean flag=false;
+do {
+	flag=true;
+	try {
 	scanner=new Scanner(System.in);
-	int choice=scanner.nextInt();
+	System.out.println("Enter your choice : ");
+	choice=scanner.nextInt();
+	if(!(choice>=1 && choice<=8)) {
+		throw new InvalidChoiceException();
+	}
+	}catch(Exception e) {
+		System.out.println("Please enter valid choice (1 to 8)");
+		flag=false;
+	}
+}while(flag==false);
+
 	switch(choice) {
 	case 1:
 		StudentRegistration studentRegistration=new ImplStudetRegistration();
@@ -51,12 +71,17 @@ static Scanner scanner=null;
 	case 8:
 		AddQuestion addQuestion=new ImplAddQuestion();
 		addQuestion.getAddQuestion();
-		break;
-	default:
-		System.out.println("Invalid Choice.");		
+		break;	
+	}
+	
+	System.out.println("Do you want to perform more activities on quiz application ?\npress \"y\" key for yes,press any other key to exit.");
+	char c=scanner.next().charAt(0);
+	if(c=='y' || c=='Y') {
+		getQuiz();
+	}else {
+		System.out.println("Thank you... Have a good day!!!");
 	}
 	
 	scanner.close();
-	}
-	
+}
 }

@@ -19,10 +19,13 @@ public class ImplStudetRegistration implements StudentRegistration{
 			System.out.println("Enter Last Name -");
 			preparedStatement.setString(2, QuizDemo.scanner.next());
 			System.out.println("Enter Username -");
-		//	String name=QuizDemo.scanner.next();
-			//Example ex=new Example();
-			//ex.method(name);
-			preparedStatement.setString(3, QuizDemo.scanner.next());
+			boolean j=false;
+			String name="";
+			do {
+			name=QuizDemo.scanner.next();
+			j=IsUsernameValid.isValidUsername(name);
+			}while(j==true);
+			preparedStatement.setString(3, name);
 			System.out.println("Enter Password -");
 			preparedStatement.setString(4, QuizDemo.scanner.next());
 			System.out.println("Enter City -");
