@@ -72,7 +72,7 @@ if(present==true) {
   }else {
 	  try {
 		  //System.out.println(v);
-		throw new QuizNotAttemptedException(studentId+" is registered...but quiz not attempted...");
+		throw new QuizNotAttemptedException("Student id : "+studentId+" is registered...but quiz not attempted...");
 	   }catch(Exception e) {
 		System.out.println(e.getMessage());
 		}
@@ -80,7 +80,7 @@ if(present==true) {
 		// break;
    }else {
 	   try {
-		throw new StudentIsNotRegisteredException(studentId+" does not exist......");
+		throw new StudentIsNotRegisteredException("Student id : "+studentId+" does not exist......");
 	   }catch(Exception e) {
 		System.out.println(e.getMessage());
 		}

@@ -74,7 +74,7 @@ do {
 		break;	
 	}
 	
-	System.out.println("Do you want to perform more activities on quiz application ?\npress \"y\" key for yes,press any other key to exit.");
+	System.out.println("\n\nDo you want to perform more activities on quiz application ?\npress \"y\" key for yes,press any other key to exit.");
 	char c=scanner.next().charAt(0);
 	if(c=='y' || c=='Y') {
 		getQuiz();

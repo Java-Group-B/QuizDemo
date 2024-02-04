@@ -1,5 +1,4 @@
 
-////////////////////////
 package com.quiz;
 
 import java.sql.Connection;
@@ -64,9 +63,9 @@ public static void displayresulbyasc() throws Exception {
 			String lastname = rs.getString("lastname");
 			System.out.println("lastname>>" + lastname);
 			
-			int score = rs.getInt("score");
+			String score = rs.getString("score");
 			System.out.println("Score =" + score );
-			
+			System.out.println();
 		}
 		// step-5-closing  all  resources
 		
