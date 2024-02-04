@@ -2,6 +2,7 @@ package com.quiz;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Scanner;
 public class ImplAddQuestion implements AddQuestion{
 
 	@Override
@@ -36,12 +37,33 @@ public class ImplAddQuestion implements AddQuestion{
 		}
 	private static void addNewQuestion() throws Exception {
 
+		System.out.println("How many questions do you want to add?");
+		int choice=0;
+	
+		boolean flag=false;
+	do {
+		flag=true;
+		try {
+		QuizDemo.scanner=new Scanner(System.in);
+		choice=QuizDemo.scanner.nextInt();
+		if(choice<0) {
+			throw new InvalidChoiceException();
+		}
+		}catch(Exception e) {
+			System.out.println("Please enter valid choice:");
+			flag=false;
+		}
+	}while(flag==false);
+		
+		for(int i=0;i<choice;i++) {
 		Connection connection=null;
 		PreparedStatement preparedStatement =null;
 		try {
+			
 			ConnectionDetails connectionDetails=new ConnectionDetails();
 			connection=connectionDetails.getConnection();
-			System.out.println("Enter the Question :");
+			
+			System.out.println("\nEnter the Question : "+(i+1));
 			QuizDemo.scanner.nextLine();
 			preparedStatement = connection.prepareStatement("insert into question_bank(question,option_a,option_b,option_c,option_d,correct_answer)values (?,?,?,?,?,?)");
 			String question=QuizDemo.scanner.nextLine();
@@ -78,6 +100,6 @@ public class ImplAddQuestion implements AddQuestion{
 			connection.close();
 			preparedStatement.close();
 		}
-
+		}
 	}
 }
