@@ -14,9 +14,7 @@ public class ImplDisplayResult implements DisplayResult{
 		String pword=QuizDemo.scanner.next();
 		boolean verifyUser=VerificationOfUserLogin.getUserLoginVerification(uname, pword);
 		/*call getUserVarification method and verify user*/
-				if(verifyUser==true) {
-					
-				
+				if(verifyUser==true) {		
 		boolean varify=VerificationOfLoginDataForResult.getUserVarification(uname,pword);
 		//if credentials are correct, then call getResult to display result 
 		if(varify==true) {

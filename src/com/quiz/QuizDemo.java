@@ -41,7 +41,7 @@ do {
 
 	switch(choice) {
 	case 1:
-		StudentRegistration studentRegistration=new ImplStudetRegistration();
+		StudentRegistration studentRegistration=new ImplStudentRegistration();
 		studentRegistration.getStudentRegistration();
 		break;
 	case 2:

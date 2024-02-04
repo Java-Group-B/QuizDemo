@@ -9,8 +9,6 @@ import java.util.Map;
 
 public class VerificationOfUserLogin {
 
-
-
 	public static boolean getUserLoginVerification(String username,String password) throws SQLException {
 
 		Connection connection = null;
