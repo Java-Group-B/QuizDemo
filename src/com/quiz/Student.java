@@ -8,13 +8,7 @@ import java.util.Set;
 
 public class Student {
 
-	private String firstname;
-	private String lastname;
-	private String username;
-	private String password;
-	private String city;
-	private String emailId;
-	private String mobileNumber;
+
 	
 	public boolean setFirstname(String firstname) {
 		boolean s=false;
