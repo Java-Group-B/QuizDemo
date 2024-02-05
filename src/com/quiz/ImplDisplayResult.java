@@ -27,6 +27,10 @@ public class ImplDisplayResult implements DisplayResult{
 				}
 			}
 		}
+		else {
+			System.out.println("Please Enter Correct Username and Password :\n");
+			getDisplayResult();
+		}
 	}
 
 	/*getResult() method is used to display result of student, after verification of user/student.*/

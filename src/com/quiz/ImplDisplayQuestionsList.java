@@ -35,7 +35,8 @@ public class ImplDisplayQuestionsList implements DisplayQuestionsList {
 			}
 
 		}else {
-
+			System.out.println("Please Enter Correct Username and Password :\n");
+			 getDisplayQuestionsList();
 		}
 	}
 	/*setQuizInitialization() method is used to display questions and start the quiz if user is verified*/
