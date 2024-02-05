@@ -36,7 +36,7 @@ CREATE TABLE `student_result` (
 
 LOCK TABLES `student_result` WRITE;
 /*!40000 ALTER TABLE `student_result` DISABLE KEYS */;
-INSERT INTO `student_result` VALUES ('himanshu56','40/50'),('priyanka456','45/50'),('sarika89','35/50');
+INSERT INTO `student_result` VALUES ('himanshu56','40/50'),('priyanka456','45/50'),('sarika89','30/50');
 /*!40000 ALTER TABLE `student_result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
