@@ -10,6 +10,10 @@ public class Question {
 	private String option_d;
 	private String answers;
 	
+/*Getter and setter methods allows us to 
+set questions(with options) and then fetch that questions using getter method */
+/*Author Name-Pranoti*/
+	
 	public int getQuestionId() {
 		return questionId;
 	}

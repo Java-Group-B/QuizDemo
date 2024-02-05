@@ -14,7 +14,8 @@ public class ImplStudentRegistration implements StudentRegistration{
 	String city;
 	String emailId;
 	String mobileNumber;
-	
+	/*getStudentRegistration() is used to register student details*/
+	/*Author Name-Priyanka Suyog Gawali*/
 	@Override
 	public void getStudentRegistration() throws Exception {
 
