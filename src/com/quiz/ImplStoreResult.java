@@ -27,7 +27,7 @@ public class ImplStoreResult implements StoreResult {
 			ConnectionDetails connectionDetails = new ConnectionDetails();
 			connection=connectionDetails.getConnection();
 			String obtainedMarks=obtainedMarksOfStudent+"/"+totalMarksOfQuiz;
-			ps=connection.prepareStatement("insert into student_result(username,score) value (?,?)");	
+			ps=connection.prepareStatement("insert into student_result(username,score) values (?,?)");	
 			ps.setString(1, username);
 			ps.setString(2, obtainedMarks);
 			ps.executeUpdate();

@@ -8,7 +8,7 @@ public class ConnectionDetails {
  establish connection between java application and MySql Database*/
 /*Author Name- Himanshu*/	
 	public  Connection getConnection() throws Exception {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 		Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/group_b_db", "root", "root");
 		return connection;
 	}

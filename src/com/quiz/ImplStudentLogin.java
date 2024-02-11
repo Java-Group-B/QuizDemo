@@ -58,8 +58,23 @@ public class ImplStudentLogin implements StudentLogin {
 				}while(!(option.equals("1")||option.equals("2")));
 				
 				if(option.equals("1")) {
-					ImplDisplayQuestionsList questions = new ImplDisplayQuestionsList();
-					questions.setQuizInitialization(uname);
+					if(option.equals("1")) {
+						boolean userDataVerify=VerificationOfUserLogin.getUserLoginVerification(uname,pwd);
+						if(userDataVerify==true) {
+							boolean j=VerificationOfLoginDataForResult.getUserVarification(uname,pwd);
+							if(j==true) {
+								try {
+									throw new ReAttemptOfQuizIsDeniedException("sorry! you cannot re-attempt the quiz again....");
+								}catch(ReAttemptOfQuizIsDeniedException e) {
+									System.out.println(e.getMessage());;
+								}
+							}else {
+								ImplDisplayQuestionsList implDisplayQuestionsList=new ImplDisplayQuestionsList();
+								implDisplayQuestionsList.setQuizInitialization(uname);
+							}
+
+						}
+					}
 				}
 				else if(option.equals("2")) {
 					boolean verifyUser=VerificationOfUserLogin.getUserLoginVerification(uname, pwd);
